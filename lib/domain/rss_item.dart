@@ -25,6 +25,7 @@ class RssItem {
   final RssEnclosure? enclosure;
   final DublinCore? dc;
   final Itunes? itunes;
+  final String? tag;
 
   RssItem({
     this.title,
@@ -41,10 +42,12 @@ class RssItem {
     this.enclosure,
     this.dc,
     this.itunes,
+    this.tag,
   });
 
   factory RssItem.parse(XmlElement element) {
     return RssItem(
+      tag: element.findElements('tag').firstOrNull?.text,
       title: element.findElements('title').firstOrNull?.text,
       description: element.findElements('description').firstOrNull?.text,
       link: element.findElements('link').firstOrNull?.text,
